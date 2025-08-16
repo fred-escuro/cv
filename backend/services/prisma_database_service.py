@@ -82,6 +82,75 @@ class PrismaDatabaseService:
             print(f"❌ No existing file found with hash {file_hash}")
         return None
     
+    async def check_file_exists_by_hash(self, file_hash: str) -> Optional[Dict[str, Any]]:
+        """Check if a file already exists in the database by hash string"""
+        try:
+            existing_file = await self.prisma.cvfile.find_first(
+                where={"fileHash": file_hash},
+                include={
+                    "personalInfo": True,
+                    "workExperience": True,
+                    "education": True,
+                    "skills": True,
+                    "certifications": True,
+                    "projects": True,
+                    "awardsHonors": True,
+                    "volunteerExperience": True,
+                    "references": True,
+                    "itSystems": True
+                }
+            )
+            
+            if existing_file:
+                print(f"✅ Found existing file with hash {file_hash}")
+                print(f"   - File ID: {existing_file.fileId}")
+                print(f"   - Original filename: {existing_file.originalFilename}")
+                return existing_file.model_dump()
+            else:
+                print(f"❌ No existing file found with hash {file_hash}")
+            return None
+            
+        except Exception as e:
+            print(f"⚠️ Error checking file by hash: {e}")
+            return None
+    
+    async def check_file_exists_by_filename(self, filename: str) -> Optional[Dict[str, Any]]:
+        """Check if a file already exists in the database by filename (case-insensitive)"""
+        try:
+            existing_file = await self.prisma.cvfile.find_first(
+                where={
+                    "originalFilename": {
+                        "mode": "insensitive",
+                        "equals": filename
+                    }
+                },
+                include={
+                    "personalInfo": True,
+                    "workExperience": True,
+                    "education": True,
+                    "skills": True,
+                    "certifications": True,
+                    "projects": True,
+                    "awardsHonors": True,
+                    "volunteerExperience": True,
+                    "references": True,
+                    "itSystems": True
+                }
+            )
+            
+            if existing_file:
+                print(f"✅ Found existing file with filename {filename}")
+                print(f"   - File ID: {existing_file.fileId}")
+                print(f"   - Original filename: {existing_file.originalFilename}")
+                return existing_file.model_dump()
+            else:
+                print(f"❌ No existing file found with filename {filename}")
+            return None
+            
+        except Exception as e:
+            print(f"⚠️ Error checking file by filename: {e}")
+            return None
+    
     async def save_file_info(self, file_id: str, file_path: Path, original_filename: str, file_type: str) -> str:
         """Save file information to the database"""
         file_size = file_path.stat().st_size

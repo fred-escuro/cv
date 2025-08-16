@@ -1,0 +1,13 @@
+# Batch CV Processor Dependencies
+
+# Environment variable loading
+python-dotenv>=1.0.0
+
+# Async file operations
+aiofiles>=23.0.0
+
+# HTTP client for future features
+aiohttp>=3.8.0
+
+# Note: Other dependencies (asyncio, pathlib, json, datetime, hashlib, uuid)
+# are part of Python standard library and don't need to be installed separately.

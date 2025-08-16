@@ -38,7 +38,21 @@ except ImportError:
     }
 
 # Load environment variables
-load_dotenv()
+# Try to load from backend directory first, then current directory
+try:
+    from pathlib import Path
+    backend_env_path = Path(__file__).parent.parent / '.env'
+    if backend_env_path.exists():
+        load_dotenv(backend_env_path)
+        print(f"✅ AI Processor: Loaded backend configuration from {backend_env_path}")
+    else:
+        # Fallback to current directory
+        load_dotenv()
+        print(f"⚠️ AI Processor: Backend .env not found, using current directory")
+except Exception as e:
+    print(f"⚠️ AI Processor: Error loading .env: {e}")
+    # Fallback to current directory
+    load_dotenv()
 
 class AIProcessor:
     def __init__(self):

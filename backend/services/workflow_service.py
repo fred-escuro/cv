@@ -110,13 +110,18 @@ class WorkflowService:
                 if not new_pdf_filename.endswith('.pdf'):
                     new_pdf_filename += '.pdf'
                 
-                new_pdf_path = Path("uploads") / new_pdf_filename
+                # Use absolute path to backend/uploads directory to ensure correct location
+                # This works whether called from main backend or batch_process
+                backend_dir = Path(__file__).parent.parent  # Go up to backend directory
+                uploads_dir = backend_dir / "uploads"
+                new_pdf_path = uploads_dir / new_pdf_filename
                 
                 # Move/rename the PDF file
                 import shutil
                 shutil.move(str(original_pdf_path), str(new_pdf_path))
                 
                 print(f"📁 Renamed PDF from {original_pdf_path.name} to {new_pdf_path.name}")
+                print(f"📁 PDF saved to: {new_pdf_path}")
                 
                 # Update the conversion result with the new path
                 conversion_result["pdf_path"] = str(new_pdf_path)

@@ -1,0 +1,156 @@
+# Batch CV Processor Configuration
+# Copy this file to .env and modify the values as needed
+
+# =============================================================================
+# FOLDER CONFIGURATION
+# =============================================================================
+
+# Default folder to process CVs from
+DEFAULT_CV_FOLDER=C:\Fredmann\Projects\cvs\batch-1
+
+# =============================================================================
+# PROCESSING LIMITS
+# =============================================================================
+
+# Maximum number of files to process (0 = no limit)
+DEFAULT_FILE_LIMIT=2
+
+# Maximum file size in MB (0 = no limit)
+MAX_FILE_SIZE_MB=100
+
+# Minimum file size in KB (0 = no limit)
+MIN_FILE_SIZE_KB=1
+
+# =============================================================================
+# FILE TYPE FILTERS
+# =============================================================================
+
+# Comma-separated list of file extensions to process
+# Leave empty to process all supported file types
+DEFAULT_FILE_TYPES=pdf,docx,doc,rtf,txt,json,jpg,jpeg,png,bmp,tiff
+
+# =============================================================================
+# LOGGING CONFIGURATION
+# =============================================================================
+
+# Default log file name (without extension)
+DEFAULT_LOG_FILE=batch_processing_log
+
+# Default error log file name (without extension)
+DEFAULT_ERROR_LOG_FILE=batch_error_log
+
+# Log directory (relative to batch_process folder)
+LOG_DIRECTORY=logs
+
+# Log level (DEBUG, INFO, WARNING, ERROR)
+LOG_LEVEL=INFO
+
+# Enable detailed console output (true/false)
+SHOW_DETAILED_OUTPUT=true
+
+# =============================================================================
+# PROCESSING SETTINGS
+# =============================================================================
+
+# Delay between files in seconds
+PROCESSING_DELAY_SECONDS=0.5
+
+# Batch size for processing
+BATCH_SIZE=50
+
+# Maximum concurrent processes (1 = sequential)
+MAX_CONCURRENT_PROCESSES=1
+
+# =============================================================================
+# ERROR HANDLING
+# =============================================================================
+
+# Skip corrupted files (true/false)
+SKIP_CORRUPTED_FILES=true
+
+# Continue processing on errors (true/false)
+CONTINUE_ON_ERROR=true
+
+# Maximum errors before stopping (0 = no limit)
+MAX_ERRORS_BEFORE_STOP=100
+
+# =============================================================================
+# DATABASE SETTINGS
+# =============================================================================
+
+# Database connection timeout in seconds
+DATABASE_TIMEOUT_SECONDS=30
+
+# Maximum retry attempts for failed operations
+MAX_RETRIES=3
+
+# =============================================================================
+# PERFORMANCE SETTINGS
+# =============================================================================
+
+# Enable progress bar (true/false)
+ENABLE_PROGRESS_BAR=true
+
+# Enable parallel processing (true/false)
+ENABLE_PARALLEL_PROCESSING=false
+
+# Number of parallel workers
+PARALLEL_WORKERS=4
+
+# =============================================================================
+# OUTPUT SETTINGS
+# =============================================================================
+
+# Generate summary report (true/false)
+GENERATE_SUMMARY_REPORT=true
+
+# Save error log (true/false)
+SAVE_ERROR_LOG=true
+
+# Save success log (true/false)
+SAVE_SUCCESS_LOG=false
+
+# =============================================================================
+# FILE HANDLING
+# =============================================================================
+
+# Create backup copies (true/false)
+CREATE_BACKUP_COPIES=false
+
+# Backup directory (relative to batch_process folder)
+BACKUP_DIRECTORY=backups
+
+# Cleanup temporary files (true/false)
+CLEANUP_TEMP_FILES=true
+
+# Cleanup failed files (true/false)
+CLEANUP_FAILED_FILES=false
+
+# =============================================================================
+# NOTIFICATION SETTINGS (Future Features)
+# =============================================================================
+
+# Enable email notifications (true/false)
+ENABLE_EMAIL_NOTIFICATIONS=false
+
+# Notification email address
+NOTIFICATION_EMAIL=
+
+# Enable webhook notifications (true/false)
+ENABLE_WEBHOOK_NOTIFICATIONS=false
+
+# Webhook URL
+WEBHOOK_URL=
+
+# =============================================================================
+# ADVANCED SETTINGS
+# =============================================================================
+
+# Enable resume processing (true/false)
+ENABLE_RESUME_PROCESSING=true
+
+# Resume checkpoint file name
+RESUME_CHECKPOINT_FILE=batch_processing_checkpoint.json
+
+# Enable dry run mode (true/false)
+ENABLE_DRY_RUN=false
